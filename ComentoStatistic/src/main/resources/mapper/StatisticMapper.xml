@@ -19,4 +19,48 @@
         where left(ri.createDate, 4) = #{yearMonth};
     </select>
 
+    <select id="selectMonthlyLogins" parameterType="string" resultType="MonthlyCountDto">
+        select
+            substr(createDate, 1, 6) as month,
+            count(*) as totCnt
+        from
+            statistic3.requestInfo
+        where
+            left(createDate, 2) = #{year}
+        group by
+            month
+        order by
+            month;
+    </select>
+
+    <select id="selectDailyLogins" parameterType="String" resultType="DailyCountDto">
+
+        select
+            concat('20',substr(createDate, 1, 6)) as day,
+            count(*) as totCnt
+        from
+            statistic3.requestInfo
+        where
+            left(createDate,6) = #{day};
+
+
+    </select>
+
+    <select id="selectDailyAvgLogins" parameterType="string" resultType="DailyAvgDto">
+        select
+            concat('20', #{year}) as year,
+            round(count(*) / 365.0, 2) as averageLogins
+        from
+            statistic3.requestInfo
+        where
+            left(createDate, 2) = #{year};
+    </select>
+
+    <select id="selectLoginsForYear" parameterType="string" resultType="LoginDto">
+        select createDate
+        from statistic3.requestInfo
+        where left(createDate, 2) = #{year};
+    </select>
+
+
 </mapper>

@@ -1,11 +1,13 @@
 package com.demo.ComentoStatistic.dto;
 
+
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
+
 @Setter
-public class YearCountDto {
-    private String year;
+@Getter
+public class DailyCountDto {
+    private String day;
     private Integer totCnt;
 }

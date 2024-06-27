@@ -5,7 +5,8 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class YearCountDto {
+public class DailyAvgDto {
+
     private String year;
-    private Integer totCnt;
+    private Float averageLogins;
 }
